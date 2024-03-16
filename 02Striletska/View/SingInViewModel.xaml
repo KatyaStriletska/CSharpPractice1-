@@ -1,0 +1,244 @@
+﻿<UserControl x:Class="_02Striletska.View.SignInViewModel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_02Striletska.View"
+             mc:Ignorable="d" 
+             IsEnabled="{Binding IsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="180"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Grid.Row="0" 
+         HorizontalAlignment="Left" 
+         VerticalAlignment="Top" 
+         FontFamily="CordiaUPC"
+         Text="Please enter your data to see a result!" 
+         FontSize="30" 
+         Foreground="MidnightBlue" 
+         FontWeight="Bold" Grid.ColumnSpan="2" Margin="136,23,0,0">
+
+        </TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+
+            <!-- Ім'я -->
+            <StackPanel Width="400" Height="180">
+                <TextBlock 
+              HorizontalAlignment="Left" 
+              FontFamily="CordiaUPC"
+              Text="Last name:" 
+              FontSize="20" 
+              Foreground="MidnightBlue" 
+              Margin="100,23,0,0"
+           />
+                <TextBox  
+              x:Name="lastNameInput"
+              HorizontalAlignment="Left" 
+              Text="{Binding LastName, Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
+              Height="40"
+              Width="226" 
+              Margin="100,0,0,0"
+              FontSize="20"/>
+                <TextBlock 
+                HorizontalAlignment="Left" 
+                FontFamily="CordiaUPC"
+                Text="First name:" 
+                FontSize="20" 
+                Foreground="MidnightBlue" 
+                Margin="100,23,0,0"/>
+                <TextBox   
+                x:Name="firstNameInput"
+                Text="{Binding FirstName, Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Height="40"
+                Width="226" 
+                Margin="100,0,0,0"
+                FontSize="20"
+                              />
+            </StackPanel>
+
+
+            <StackPanel Width="400" Height="180">
+                <TextBlock 
+              HorizontalAlignment="Left" 
+              FontFamily="CordiaUPC"
+              Text="Email :" 
+              FontSize="20" 
+              Foreground="MidnightBlue" 
+              Margin="100,23,0,0"/>
+                <TextBox     
+              x:Name="emailInput"
+              Text="{Binding Email, Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
+              HorizontalAlignment="Left" 
+              Height="40"
+              FontSize="20" 
+              Width="226" 
+              Margin="100,0,0,0"/>
+                <TextBlock 
+              HorizontalAlignment="Left" 
+              FontFamily="CordiaUPC"
+              Text="Birth Date :" 
+              FontSize="20" 
+              Foreground="MidnightBlue" 
+              Margin="100,23,0,0"/>
+                <DatePicker x:Name="dateBirthInput" 
+                      SelectedDate="{Binding Birthday, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"  
+                      HorizontalAlignment="Left"
+                      FontFamily="CordiaUPC"
+                      FontSize="20" 
+                      Foreground="MidnightBlue" 
+                      Height="40"
+                      Width="226" 
+                      Margin="100,0,0,0"
+  />
+            </StackPanel>
+
+        </StackPanel>
+
+        <Button
+       BorderBrush="{x:Null}"
+            Grid.Row="2"
+         
+      x:Name="ButtonToSeeZodiacs" 
+      HorizontalAlignment="Left" 
+      VerticalAlignment="Top" 
+      Height="38" 
+      Width="188" 
+      Content="Proceed"
+            Command="{Binding ProceedCommand}"
+      Background="MidnightBlue"
+      Foreground="AliceBlue"
+      FontFamily="CordiaUPC"
+      FontWeight="Bold"
+      FontSize="20" Margin="59,72,0,0"   
+      >
+        </Button>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <StackPanel Margin="300,20,0,0" Width="240" Orientation="Vertical" Height="200">
+                <TextBlock 
+              FontFamily="CordiaUPC"
+              Text="Last Name :" 
+              FontSize="20" 
+              Foreground="MidnightBlue" >
+                </TextBlock>
+                <TextBlock 
+              x:Name="lastNameOutput"
+              FontFamily="CordiaUPC"
+              FontWeight="Bold"
+              FontSize="20" 
+              Foreground="MidnightBlue"
+              Text="{Binding LastName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+           
+                </TextBlock>
+                <TextBlock 
+              FontFamily="CordiaUPC"
+              Text="First Name :" 
+              FontSize="20" 
+              Foreground="MidnightBlue" >
+                </TextBlock>
+                <TextBlock 
+              x:Name="firstNameOutput"
+              FontFamily="CordiaUPC"
+              FontWeight="Bold"
+              FontSize="20" 
+              Foreground="MidnightBlue"
+                    Text="{Binding FirstName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBlock>
+                <TextBlock 
+              FontFamily="CordiaUPC"
+              Text="Email :" 
+              FontSize="20" 
+              Foreground="MidnightBlue" >
+                </TextBlock>
+                <TextBlock 
+              x:Name="emailOutput"
+              FontFamily="CordiaUPC"
+              FontWeight="Bold"
+              FontSize="20" 
+              Foreground="MidnightBlue" 
+              Text="{Binding Email, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                  </TextBlock>
+                <TextBlock 
+              FontFamily="CordiaUPC"
+              Text="Birht Date:" 
+              FontSize="20" 
+              Foreground="MidnightBlue" >
+                </TextBlock>
+                <TextBlock 
+              x:Name="birthDateOutput"
+              FontFamily="CordiaUPC"
+              FontWeight="Bold"
+              FontSize="20" 
+              Foreground="MidnightBlue"
+              Text="{Binding Birthday, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Margin="0,20,0, 0" Width="240" Orientation="Vertical">
+                <TextBlock 
+              FontFamily="CordiaUPC"
+              Text="You are adult :" 
+              FontSize="20" 
+              Foreground="MidnightBlue" >
+                </TextBlock>
+                <TextBlock 
+              x:Name="isAdultOutput"
+              FontFamily="CordiaUPC"
+              FontWeight="Bold"
+              FontSize="20" 
+              Foreground="MidnightBlue"
+               Text="{Binding IsAdult, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBlock>
+                <TextBlock 
+              FontFamily="CordiaUPC"
+              Text="Sun sign :" 
+              FontSize="20" 
+              Foreground="MidnightBlue" >
+                </TextBlock>
+                <TextBlock 
+              x:Name="sunSignOutput"
+              FontFamily="CordiaUPC"
+              FontWeight="Bold"
+              FontSize="20" 
+              Foreground="MidnightBlue"
+              Text="{Binding SunSign, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBlock>
+                <TextBlock 
+              FontFamily="CordiaUPC"
+              Text="Chinese sign :" 
+              FontSize="20" 
+              Foreground="MidnightBlue" >
+                </TextBlock>
+                <TextBlock 
+              x:Name="chineseSignOutput"
+              FontFamily="CordiaUPC"
+              FontWeight="Bold"
+              FontSize="20" 
+              Foreground="MidnightBlue"
+              Text="{Binding ChineseSign, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBlock>
+                <TextBlock 
+              FontFamily="CordiaUPC"
+              Text="Is your birthday today :" 
+              FontSize="20" 
+              Foreground="MidnightBlue" >
+                </TextBlock>
+                <TextBlock 
+              x:Name="isBirthdayOutput"
+              FontFamily="CordiaUPC"
+              FontWeight="Bold"
+              FontSize="20" 
+              Foreground="MidnightBlue"
+              Text="{Binding IsBirthday, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

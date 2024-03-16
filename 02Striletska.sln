@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02Striletska", "02Striletska\02Striletska.csproj", "{BB740348-9DA8-45CD-8715-673F390EDF3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Striletska02", "Striletska02\Striletska02.csproj", "{18FBBD4F-E73F-4951-A068-A1911FF5BD97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB740348-9DA8-45CD-8715-673F390EDF3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB740348-9DA8-45CD-8715-673F390EDF3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB740348-9DA8-45CD-8715-673F390EDF3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB740348-9DA8-45CD-8715-673F390EDF3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FBBD4F-E73F-4951-A068-A1911FF5BD97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FBBD4F-E73F-4951-A068-A1911FF5BD97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FBBD4F-E73F-4951-A068-A1911FF5BD97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FBBD4F-E73F-4951-A068-A1911FF5BD97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD0FCC95-D07C-4F76-A8B3-389AADD5D563}
+	EndGlobalSection
+EndGlobal

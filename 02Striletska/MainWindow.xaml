@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
     <Grid>
-      <local:SignInViewModel></local:SignInViewModel>
+      <local:PersonView></local:PersonView>
     </Grid>
 </Window>

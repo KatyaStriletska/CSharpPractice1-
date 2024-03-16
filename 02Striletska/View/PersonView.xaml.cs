@@ -19,11 +19,11 @@ namespace _02Striletska.View
     /// <summary>
     /// Interaction logic for SignInViewModel.xaml
     /// </summary>
-    public partial class SignInViewModel : UserControl
+    public partial class PersonView : UserControl
          
     {
         private PersoneViewModel _personViewModel;   
-        public SignInViewModel()
+        public PersonView()
         {
             InitializeComponent();
             DataContext = _personViewModel = new PersoneViewModel();

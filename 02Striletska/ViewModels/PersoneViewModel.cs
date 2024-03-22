@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using _02Striletska.Models;
 using _02Striletska.Tools;
+using _02Striletska.Errors;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using System.Xml.Linq;
@@ -118,31 +119,48 @@ namespace _02Striletska.ViewModels
         }
         private async void Proceed()
         {
-          
-         
-                try
-                {
-                    IsEnabled = false;
-                    _person = await Task.Run(() => new Person(_firstName, _lastName, _email, _birthday));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Exception: {ex.Message}");
-                }
-                finally
-                {
-                int age = DateTime.Now.Year - Birthday.Year;
-                if (DateTime.Now > Birthday)
-                    age--;
-                if (age >= 135 || Birthday > DateTime.Now)
-                {
-                    _person = null;
-                    MessageBox.Show("It's not valid Date!", "Whoops, Exception!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
 
-                   
+            try
+            {
+                IsEnabled = false;
+
+                _person = await Task.Run(() => new Person(_firstName, _lastName, _email, _birthday));
+            }
+            catch (InvalidAgeInFutureException ex)
+            {
+                MessageBox.Show($"It's not valid Date! \nException: {ex.Message}", "Whoops, Exception!", MessageBoxButton.OK, MessageBoxImage.Error);
+                _person = null;
+                return;
+            }
+            catch (InvalidAgeTooOldException ex)
+            {
+                MessageBox.Show($"It's not valid Date! \nException: {ex.Message}", "Whoops, Exception!", MessageBoxButton.OK, MessageBoxImage.Error);
+                _person = null;
+                return;
+            }
+            catch (InvalidEmailException ex)
+            {
+                MessageBox.Show($"It's not valid Email! \nException: {ex.Message}", "Whoops, Exception!", MessageBoxButton.OK, MessageBoxImage.Error);
+                _person = null;
+                return;
+            }
+            catch (InvalidLastNameException ex)
+            {
+                MessageBox.Show($"It's not valid last name! Last name must start with capital letter. \nException: {ex.Message}", "Whoops, Exception!", MessageBoxButton.OK, MessageBoxImage.Error);
+                _person = null;
+                return;
+            }
+            catch (InvalidNameException ex)
+            {
+                MessageBox.Show($"It's not valid first name! First name must start with capital letter. \nException: {ex.Message}", "Whoops, Exception!", MessageBoxButton.OK, MessageBoxImage.Error);
+                _person = null;
+                return;
+            }
+            finally
+            {
+                IsEnabled = true;
+                if (_person != null)
+                {
                     OnPropertyChanged(nameof(FirstName));
                     OnPropertyChanged(nameof(LastName));
                     OnPropertyChanged(nameof(Email));
@@ -153,12 +171,11 @@ namespace _02Striletska.ViewModels
                     OnPropertyChanged(nameof(ChineseSign));
                     if (Birthday.Day == DateTime.Now.Day && DateTime.Now.Month == Birthday.Month && Birthday.Year == DateTime.Now.Year)
                         MessageBox.Show("I congratulate you on today's birthday. Be happy and smile a lot!", "Who have a birthday today!?", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-
                 }
-                IsEnabled = true;
             }
             
         }
+        
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

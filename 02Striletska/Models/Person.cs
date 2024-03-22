@@ -1,7 +1,9 @@
-﻿using System;
+﻿using _02Striletska.Errors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -41,23 +43,39 @@ namespace _02Striletska.Models
         public string FirstName
         {
             get { return _firstName; }
-            set { _firstName = value; }
+            set 
+            {
+                isValidatedName(value);
+                _firstName = value; 
+            }
            
         }
         public string LastName
         {
             get { return _lastName; }
-            set { _lastName = value; }
+            set 
+            {
+                isValidatedLastName(value);
+                _lastName = value;
+            }
         }
         public DateTime Birthday
         {
             get { return _birthday; }
-            set { _birthday = value; }  
+            set
+            {
+                isValidateAge(value);
+                _birthday = value; 
+            }  
         }
         public string Email
         {
             get { return _email; }
-            set {  _email = value; } 
+            set
+            {
+                isValidatedEmail(value);
+                _email = value; 
+            } 
         }
         public bool IsAdult
         {
@@ -116,5 +134,30 @@ namespace _02Striletska.Models
         }
         public bool isTodayBirthday()
         { return DateTime.Now.Day == Birthday.Day && DateTime.Now.Month == Birthday.Month; }
+        private void isValidateAge(DateTime bd)
+        {
+            if (bd > DateTime.Now) throw new InvalidAgeInFutureException();
+
+            int age = DateTime.Now.Year - bd.Year;
+            if (DateTime.Now.Month < bd.Month || (DateTime.Now.Month == bd.Month && DateTime.Now.Day < bd.Day))
+                age--;
+            if (age >= 135) throw new InvalidAgeTooOldException();
+
+        }
+        private void isValidatedEmail(string email)
+        {
+            string correctEmail = "^\\S+@\\S+\\.\\S+$";
+            if(!Regex.IsMatch(email, correctEmail, RegexOptions.IgnoreCase)) throw new InvalidEmailException();
+        }
+        private void isValidatedName(string name)
+        {
+            string correctName = "^[A-Z](?:[a-z.,'_ -]*[a-zA-Z0-9])?$";
+            if (!Regex.IsMatch(name, correctName)) throw new InvalidNameException();
+        }
+        private void isValidatedLastName(string name)
+        {
+            string correctLastName = "^[A-Z](?:[a-z.,'_ -]*[a-zA-Z0-9])?$";
+            if (!Regex.IsMatch(name, correctLastName)) throw new InvalidLastNameException();
+        }
     }
 }
